@@ -1,4 +1,3 @@
-require "http"
-require "json"
 
-puts "Hello, world!"
+hello_world = "Hello, world!"
+puts hello_world
