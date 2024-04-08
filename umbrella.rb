@@ -1,4 +1,4 @@
 require "http"
 require "json"
 
-pp "Hello, world!"
+puts "Hello, world!"
