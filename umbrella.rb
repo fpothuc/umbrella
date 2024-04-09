@@ -22,6 +22,11 @@ pirate_weather_url = "https://api.pirateweather.net/forecast/#{pirate_weather_ke
 
 pirate_weather_data = (HTTP.get(pirate_weather_url)).to_s
 parsed_pirate_data = JSON.parse(pirate_weather_data)
-#current_weather_hash = parsed_pirate_data.fetch("currently")
+current_weather_hash = parsed_pirate_data.fetch("currently")
+precip_prob = current_weather_hash.fetch("precipProbability")
+weather_summary = current_weather_hash.fetch("summary")
+temperature = current_weather_hash.fetch("temperature")
 
-puts parsed_pirate_data
+puts current_weather_hash
+puts "=" * 40
+puts "The current temperature is: #{temperature}, the current weather is: #{weather_summary}, and the probability of precipitation in the next hour is: #{precip_prob}"
