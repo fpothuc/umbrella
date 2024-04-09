@@ -21,5 +21,7 @@ pirate_weather_key = ENV.fetch("PIRATE_WEATHER_KEY")
 pirate_weather_url = "https://api.pirateweather.net/forecast/#{pirate_weather_key}/#{latitude},#{longitude}"
 
 pirate_weather_data = (HTTP.get(pirate_weather_url)).to_s
+parsed_pirate_data = JSON.parse(pirate_weather_data)
+#current_weather_hash = parsed_pirate_data.fetch("currently")
 
-puts pirate_weather_data
+puts parsed_pirate_data
