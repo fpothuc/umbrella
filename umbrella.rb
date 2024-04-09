@@ -1,8 +1,25 @@
 require "http"
 require "json"
 
-pirate_weather_api_key = ENV.fetch("PIRATE_WEATHER_API_KEY")
-gmaps_key = ENV.fetch("GMAPS_KEY")
+puts "Where are you?"
+user_location = gets.chomp
 
-hello_world = "Hello, world!"
-puts hello_world
+gmaps_key = ENV.fetch("GMAPS_KEY")
+gmaps_url = "https://maps.googleapis.com/maps/api/geocode/json?address=#{user_location}&key=#{gmaps_key}"
+
+
+gmaps_data = (HTTP.get(gmaps_url)).to_s
+gmaps_parse = JSON.parse(gmaps_data)
+parse_results_array = gmaps_parse.fetch("results")
+first_result_hash = parse_results_array.at(0)
+geometry_hash = first_result_hash.fetch("geometry")
+location_hash = geometry_hash.fetch("location")
+latitude = location_hash.fetch("lat")
+longitude = location_hash.fetch("lng")
+
+pirate_weather_key = ENV.fetch("PIRATE_WEATHER_KEY")
+pirate_weather_url = "https://api.pirateweather.net/forecast/#{pirate_weather_key}/#{latitude},#{longitude}"
+
+pirate_weather_data = (HTTP.get(pirate_weather_url)).to_s
+
+puts pirate_weather_data
