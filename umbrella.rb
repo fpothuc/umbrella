@@ -27,6 +27,5 @@ precip_prob = current_weather_hash.fetch("precipProbability")
 weather_summary = current_weather_hash.fetch("summary")
 temperature = current_weather_hash.fetch("temperature")
 
-puts current_weather_hash
 puts "=" * 40
-puts "The current temperature is: #{temperature}, the current weather is: #{weather_summary}, and the probability of precipitation in the next hour is: #{precip_prob}"
+puts "The current temperature is: #{temperature}, the current weather is: #{weather_summary}, and the probability of precipitation in the next hour is: #{precip_prob}%."
